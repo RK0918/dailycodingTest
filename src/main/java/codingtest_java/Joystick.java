@@ -1,4 +1,4 @@
-package codingTest_JAVA;
+package codingtest_java;
 
 class Joystick {
     public int solution(String name) {
