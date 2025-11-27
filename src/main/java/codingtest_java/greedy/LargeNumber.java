@@ -1,4 +1,4 @@
-package codingtest_java;
+package codingtest_java.greedy;
 // 11.24 21:29 push
 
 class LargeNumber {

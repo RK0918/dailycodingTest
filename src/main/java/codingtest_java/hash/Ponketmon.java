@@ -1,0 +1,35 @@
+package codingtest_java.hash;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Ponketmon {
+        public int solution(int[] nums) {
+            Map<Integer, Integer> map = new HashMap<>();
+            // Set<Integer> set = new HashSet<>(); 종류이므로 set으로도 가능
+
+            for (int num : nums) {
+                map.put(num, map.getOrDefault(num, 0)+1);
+                // set.add(num);
+            }
+
+            // 종류 수와 선택 가능한 수 중 작은 값
+            return Math.min(map.size(), nums.length / 2);
+            //return Math.min(set.size(), nums.length / 2);
+        }
+        public static void main(String[] args) {
+            Ponketmon p = new Ponketmon();
+
+            System.out.println(p.solution(new int[]{3, 1, 2, 3})); // 2
+            System.out.println(p.solution(new int[]{3, 3, 3, 3})); // 1
+            System.out.println(p.solution(new int[]{1, 2, 3, 4, 5, 6})); // 3
+            System.out.println(p.solution(new int[]{1, 1, 2, 3, 3, 3})); // 3
+            System.out.println(p.solution(new int[]{1, 2})); // 1
+            System.out.println(p.solution(new int[]{})); // 0
+            System.out.println(p.solution(new int[]{100})); // 0
+        }
+    }
+
+
+// 총 N마리 중 N/2마리 가져가
+// 근데 나는 최대한 많은 종류의 폰켓몬 가짐

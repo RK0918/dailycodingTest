@@ -1,4 +1,4 @@
-package codingtest_java;
+package codingtest_java.greedy;
 
 class Joystick {
     public int solution(String name) {
