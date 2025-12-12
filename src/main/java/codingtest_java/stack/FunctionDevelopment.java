@@ -1,8 +1,7 @@
 package codingtest_java.stack;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +44,7 @@ public class FunctionDevelopment {
 
     public static void main(String[] args) throws IOException {
         FunctionDevelopment sol = new FunctionDevelopment();
+
 
         // 테스트 케이스 1
         int[] result1 = sol.solution(
