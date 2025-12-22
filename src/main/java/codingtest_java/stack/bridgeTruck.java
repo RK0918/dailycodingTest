@@ -35,6 +35,7 @@ public class bridgeTruck {
                 // 무게제한 이하인 다리 위의 트럭(들)이 다리를 건널 동안 time++;할 수 있게 함
                 bridge.offer(0);
             }
+            // 다리를 건너는 중이므로 시간 ++;
             time ++;
         }
 
