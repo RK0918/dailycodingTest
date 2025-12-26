@@ -6,18 +6,21 @@ class FailedToFinish {
     public String solution(String[] participant, String[] completion) {
         Map<String, Integer> map = new HashMap<>();
 
-        // 참가자 명단 카운트
+        // 참가자 명단 getOrDefault 함수를 통해 카운트
         for (String p : participant) {
             map.put(p, map.getOrDefault(p, 0) + 1);
         }
 
-        // 완주자 명단 카운트 감소
+        // 완주자를 명단에서 꺼내고 map.get(c) -> 카운트 감소 ( -1 )
         for (String c : completion) {
             map.put(c, map.get(c) - 1);
         }
 
         // value가 1 남아있는 사람이 완주 못한 사람
+        // map.keySet()을 통해 iterable인 key값을 꺼내어 향상된 for문
         for (String key : map.keySet()) {
+            // key값 0이 아닐 경우(해당 멤버는 완주하지 못한 것)
+            // 그 멤버(key)를 return
             if (map.get(key) != 0) {
                 return key;
             }

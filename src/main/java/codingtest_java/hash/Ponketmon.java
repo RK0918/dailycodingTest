@@ -14,6 +14,8 @@ public class Ponketmon {
             }
 
             // 종류 수와 선택 가능한 수 중 작은 값
+            // map.size() = 종류 수,
+            // nums.length/2 = 포켓몬 수의 절반(조건에서 절반만 가져갈 수 있다고 규칙이 있음)
             return Math.min(map.size(), nums.length / 2);
             //return Math.min(set.size(), nums.length / 2);
         }
