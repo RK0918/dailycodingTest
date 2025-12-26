@@ -11,6 +11,12 @@ public class PhoneBook {
         // 길이 체크하는 조건식을 추가하여 예외처리
 
         for (int i = 0; i < phone_book.length - 1; i++) {
+            // phone_book[i]의 경우 String 이므로 length -> length() 이다.
+            // length는 배열과 리스트만 해당한다.
+
+            //if문을 통해 정렬된 배열에서 i인덱스, i+1 인덱스값과 비교하여
+            // i인덱스값의 string length가 i+1의 인덱스값의 길이보다 적고( 그래야 접두어가 될 수 있음. 아닐 경우 절대 접두어가 될 수 없으므로 넘기면 됨 )
+            // i+1의 인덱스값이 i인덱스값의 접두어일 경우 false return
             if (phone_book[i].length() <= phone_book[i+1].length() &&
                     phone_book[i].equals(phone_book[i+1].substring(0, phone_book[i].length()))) {
                 return false;
