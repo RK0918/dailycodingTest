@@ -10,7 +10,7 @@ public class Ponketmon {
 
 
             // 폰켓몬을 종류별로 카운팅하기 위 HashMap에 gerOrDefault 함수를
-            // 통해 카운팅하여 저장 => 종류별로 key(폰켓몬) : value(마리 수)
+            // 통해 카운팅하여 저장 => 종류별로 key(폰켓몬) :value(마리 수)
             for (int num : nums) {
                 map.put(num, map.getOrDefault(num, 0)+1);
                 // set.add(num);
