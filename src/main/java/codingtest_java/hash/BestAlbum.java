@@ -30,20 +30,21 @@ class BestAlbum {
         // 3. 장르별 총 재생횟수 기준 정렬
         List<String> sortedGenre = new ArrayList<>(genrePlayCount.keySet());
         sortedGenre.sort((a, b) -> genrePlayCount.get(b) - genrePlayCount.get(a));
-
+        // 4. 향상된 for문을 통해 장르에 저장된 노래정보(고유번호, 재생횟수)를 꺼냄.
         List<Integer> result = new ArrayList<>();
         for (String genre : sortedGenre) {
             List<Song> songs = genreSongs.get(genre);
             // 재생횟수 내림차순, 같으면 ID 오름차순
             songs.sort((a, b) -> (a.play != b.play) ? b.play - a.play : a.id - b.id);
-
+            // 장르의 곡이 2곡 이하일 경우도 있을 수 있기 때문에 Math.min 함수 사용
             int count = Math.min(songs.size(), 2);
             for (int i = 0; i < count; i++) {
+                // result List를 초기화하고 장르의 각 곡의 고유번호를 result에 저장
                 result.add(songs.get(i).id);
             }
         }
 
-        // ===== stream() 변환 =====
+        //  stream()함수를 통해 List -> 배열 변환
         return result.stream().mapToInt(i -> i).toArray();
 
         /* ===== for문 변환과 비교 =====
