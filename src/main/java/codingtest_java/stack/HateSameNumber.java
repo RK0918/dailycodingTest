@@ -7,19 +7,21 @@ import java.util.List;
 public class HateSameNumber {
     public int[] solution(int[] arr) {
         List<Integer> stack = new ArrayList<>();
-
+        // Deque<Integer> stack = new ArrayDeque<>();
         for (int num : arr) {
             // stackd 비어있거나 stack이 비어있지 않으면 stack의 마지막 인덱스값과 비교하여
             // 같지 않으면 stack에 추가
 
             // stack.size()-1 => getLast()로도 변경가능 JDK 21에서 default 메서드로 제공
+            // Deque일 경우, stack.get() 대신 stack.peekLast() != num
             if (stack.isEmpty() || stack.get(stack.size() - 1) != num) {
                 stack.add(num);
+                // stack.offer(num); *Deque 사용시
             }
         }
 
         return stack.stream().mapToInt(i -> i).toArray();
-        // List를 배열로 mapToInt(Integer::intValue)랑 동일함 5
+        // List를 배열로 mapToInt(Integer::intValue)랑 동일함
     }
     public static void main(String[] args) {
         HateSameNumber sol = new HateSameNumber();
