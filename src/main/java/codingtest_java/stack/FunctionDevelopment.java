@@ -2,9 +2,42 @@ package codingtest_java.stack;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+// import java.util.List;
+
+import java.util.*;
+
+public class FunctionDevelopment {
+    public int[] solution(int[] progresses, int[] speeds) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int date = 0;
+        int count =0;
+
+        for (int i=0; i < progresses.length; i++) {
+            int progress = progresses[i];
+            progress +=  (speeds[i]*date);
+
+            // 현재 배포일(date)에 못 끝냈으면 이전 count를 stack에 저장
+            if (progress < 100 && count >0) {
+                stack.offer(count);
+                count =0;
+            }
+            // (count가 0이고 progress가 100 이하일 경우)
+            // count가 0인 경우는 결국
+            // 1. 첫 번째 기능을 개발할 경우
+            // 2. 기능개발을 마치고 첫 번째 if문을 통해 이전 count가 stack에 저장되고 현재 기능 개발을 진행
+            // 3. progress가 100을 넘어서 이전 개발과 같이 count++;
+            while (progress < 100) {
+                progress += speeds[i];
+                date++;
+            }
+            count++;
+        }
+        stack.offer(count);
+        return stack.stream().mapToInt(i->i).toArray();
+    }
+/*
 
 public class FunctionDevelopment {
     public int[] solution(int[] progresses, int[] speeds) {
@@ -42,6 +75,7 @@ public class FunctionDevelopment {
         return stack.stream().mapToInt(i->i).toArray();
     }
 
+*/
     public static void main(String[] args) throws IOException {
         FunctionDevelopment sol = new FunctionDevelopment();
 
