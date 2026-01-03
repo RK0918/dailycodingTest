@@ -6,15 +6,18 @@ import java.util.List;
 public class CorrectParentheses {
     boolean solution(String s) {
         List<Character> stack = new ArrayList<>();
-
+        // Deque<Character> stack = new ArrayDeque<>();
+        // Deque를 쓰면 offer() / poll() / peek() 로 가능
         for (char c : s.toCharArray()) {
             if (c == '(') { // char c가 '('면 추가하고 아니라면, stack 비어있음 -> 이미 false
                 stack.add(c);
+                // stack.offer(c);
             } else {
                 if (stack.isEmpty()) {
                     return false;
                 }
                 stack.remove(stack.size() - 1);
+                // stack.pollLast();
             }
         /*  count로도 가능
             if (c == '(') {
