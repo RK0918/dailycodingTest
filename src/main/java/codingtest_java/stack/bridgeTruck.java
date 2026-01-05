@@ -18,6 +18,11 @@ public class bridgeTruck {
             bridge.offer(0);
         }
 
+
+        // 3. 대기트럭(waiting)을 while문을 통해 다리 위(bridge)로 보내고
+        // bridge deque가 0으로 초기화돼있고 현재 무게와 대기 중인 트럭의 무게를 게산하여
+        // 그에 따라 bridge(다리 위의 트럭)의 값을 제거하고 추가시키는 과정에서
+        // time 카운팅, 최종적으로 경과하는 시간을 계산하여 return
         int time = 0;
         int currentWeight = 0;
 
