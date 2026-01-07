@@ -6,7 +6,7 @@ import java.util.Deque;
 // Deque(stack)을 이용한 풀이 - 시간복잡도 O(n)
 public class StockPrice {
     public int[] solution(int[] prices) {
-        int n = prices.length;;
+        int n = prices.length;
         int[] answer = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
 
@@ -24,8 +24,8 @@ public class StockPrice {
          */
         for (int i=0; i < n; i++) {
             while (!stack.isEmpty() && prices[stack.peekLast()] > prices[i]) {
-                // stack(idx값 저장)이 비어있지 않고 prices[i]가
-                // prices
+                // stack(idx값 저장)이 비어있지 않고 prices[i]가 앞선 주식 가격보다 낮을
+                // 경우
                 int idx = stack.pollLast();
                 answer[idx] = i-idx;
             }
@@ -36,9 +36,12 @@ public class StockPrice {
 
     public static void main(String[] args) {
         StockPrice sol = new StockPrice();
-        int[] prices= {1, 2, 3, 2, 3};
-        int[] result = sol.solution(prices);
+        int[] prices1= {1, 2, 3, 2, 3};
+        int[] result = sol.solution(prices1);
         System.out.println("sol = " + Arrays.toString(result));
+        int[] prices2= {1, 2, 1, 2, 3};
+        int[] result2 = sol.solution(prices2);
+        System.out.println("sol = " + Arrays.toString(result2));
     }
 }
 
