@@ -24,8 +24,14 @@ public class StockPrice {
          */
         for (int i=0; i < n; i++) {
             while (!stack.isEmpty() && prices[stack.peekLast()] > prices[i]) {
-                // stack(idx값 저장)이 비어있지 않고 prices[i]가 앞선 주식 가격보다 낮을
-                // 경우
+                // while문을 통해 주식 가격이 떨어진 시점으로
+                // stack에 쌓여진 LIFO 형식으로 마지막에 저장된 idx값이 먼저 나감
+
+                // prices: [1, 2, 2, 1, 1] 일 경우
+
+                // stack = [0, 1, 2], i=0~2까지는 stack 저장,
+                // i=3일 때 while문 **맨 아래 주석 참고
+
                 int idx = stack.pollLast();
                 answer[idx] = i-idx;
             }
@@ -39,7 +45,9 @@ public class StockPrice {
         int[] prices1= {1, 2, 3, 2, 3};
         int[] result = sol.solution(prices1);
         System.out.println("sol = " + Arrays.toString(result));
-        int[] prices2= {1, 2, 1, 2, 3};
+        int[] prices2= {1, 2, 2, 1, 1};
+        // answer = 4 3 2 1 0
+        // stack = [0, 1, 2,    i=3
         int[] result2 = sol.solution(prices2);
         System.out.println("sol = " + Arrays.toString(result2));
     }
@@ -70,5 +78,60 @@ Deque<Integer> stack = new ArrayDeque<>();
         // 인덱스 예외처리를 위해 for문에서 i <len-1 했으므로 마지막 주식가격은 처리하지 않았으므로 deque에 0의 값 추가
         stack.offer(0);
         return stack.stream().mapToInt(i->i).toArray();
+
+*/
+
+/*
+
+=== 초기 상태 ===
+prices: [1, 2, 2, 1, 1]
+answer: [4, 3, 2, 1, 0]
+deque: []
+
+━━━ i=0, prices[0]=1 ━━━
+while 진입 전 deque: []
+  while문 실행 안함 (조건 불만족)
+  offerLast(0) 실행
+  최종 deque: [0]
+  최종 answer: [4, 3, 2, 1, 0]
+
+━━━ i=1, prices[1]=2 ━━━
+while 진입 전 deque: [0]
+  while문 실행 안함 (조건 불만족)
+  offerLast(1) 실행
+  최종 deque: [0, 1]
+  최종 answer: [4, 3, 2, 1, 0]
+
+━━━ i=2, prices[2]=2 ━━━
+while 진입 전 deque: [0, 1]
+  while문 실행 안함 (조건 불만족)
+  offerLast(2) 실행
+  최종 deque: [0, 1, 2]
+  최종 answer: [4, 3, 2, 1, 0]
+
+━━━ i=3, prices[3]=1 ━━━
+while 진입 전 deque: [0, 1, 2]
+  [while 1회차]
+    peekLast()=2 → prices[2]=2
+    prices[2]=2 > prices[3]=1 ✓
+    pollLast()로 2 제거
+    answer[2] = 3 - 2 = 1
+    deque 상태: [0, 1]
+  [while 2회차]
+    peekLast()=1 → prices[1]=2
+    prices[1]=2 > prices[3]=1 ✓
+    pollLast()로 1 제거
+    answer[1] = 3 - 1 = 2
+    deque 상태: [0]
+  offerLast(3) 실행
+  최종 deque: [0, 3]
+  최종 answer: [4, 2, 1, 1, 0]
+
+━━━ i=4, prices[4]=1 ━━━
+while 진입 전 deque: [0, 3]
+  while문 실행 안함 (조건 불만족)
+  offerLast(4) 실행
+  최종 deque: [0, 3, 4]
+  최종 answer: [4, 2, 1, 1, 0]
 
 */
