@@ -33,6 +33,11 @@ public class StockPrice {
                 // i=3일 때 while문 **맨 아래 주석 참고
 
                 int idx = stack.pollLast();
+                // for문의 i => prices[i]에서 주식가격이 떨어진 것이고
+                // stack에 그대로 저장된 idx의 값을 LIFO 형태로 꺼내어
+                // while문을 통해 순차적으로 처리
+                // 따라서 answer[idx]의 값은 i-idx가 됨.
+                // ex) 2번째 인덱스값(idx)의 값이 3번째 인덱스(i)에서 떨어졌다면
                 answer[idx] = i-idx;
             }
             stack.offer(i);
