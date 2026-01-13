@@ -6,6 +6,11 @@ public class LargestNumber {
     public String solution(int[] numbers) {
         // numbers의 int[]의 인덱스값이 전부 0일 경우 체크
         // for문으로 처리해도 됨.
+
+        // int[] numbers는 collection(List, Set) 등이 아니기 때문에
+        // numbers.stream() 이 아니라 Arrays.stream(numbers)
+        // Arrays.stream(int[])의 결과는 IntStream이고, IntStream에는
+        // sum()이 있어서 합계를 바로 구할 수 있음
         int sum = Arrays.stream(numbers).sum();
         if (sum == 0) {
             return "0";
