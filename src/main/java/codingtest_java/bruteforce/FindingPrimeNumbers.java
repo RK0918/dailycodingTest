@@ -57,6 +57,7 @@ public class FindingPrimeNumbers {
             used[i] = true;
 
             // set으로 중복을 제거하기 때문에 numbers.charAt(i) +cur 해도 정답
+            // 문제에선 set으로 중복을 제외했기 때문에 상관없지만 안전하게 cur + numbers.charAt(i)
             buildNumbers(numbers, used, cur +numbers.charAt(i), set);
             used[i] = false;
         }
