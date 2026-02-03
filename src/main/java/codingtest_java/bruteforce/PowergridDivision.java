@@ -6,10 +6,10 @@ import java.util.Deque;
 import java.util.List;
 
 public class PowergridDivision {
-    private List<Integer>[] graph;
+    private List<Integer>[] graph; // 클래스 전역(필드) 선언
 
     public int solution(int n, int[][] wires) {
-        graph = new ArrayList[n+1];
+        graph = new ArrayList[n+1]; // 메서드 안에서 실제 그래프 초기화/생성
         for(int i=1; i <= n; i++ ) {
             graph[i] = new ArrayList<>();
         }
@@ -38,18 +38,29 @@ public class PowergridDivision {
 
         return answer;
     }
+
+    // 여기서 알아야 될 점은, 한 쪽 전력망의 전선의 개수만 알아내면
+    // 총 전선 수 -(구한 node 수) = 다른 전력망의 전선 수이기 때문에
+    // 굳이 양 쪽의 전력망 각각의 개수를 구할 필요도 없고 문제 설명에서
+    // 각 전력망의 전선 수의 차이(abs)를 return하면 되기 때문에 더더욱
+    // 한 쪽만 알아내면 된다.
     private int bfsCount(int n, int start, int blockU, int blockV) {
         boolean[] visited = new boolean[n+1];
         Deque<Integer> dq = new ArrayDeque<>();
-
+        // 방문한 전선 방문처리
         visited[start] = true;
         dq.offerLast(start);
-        int count =1;
+        int count =1; // 방문한 전선 수를 이미 센 걸로 판정
 
         while (!dq.isEmpty())  {
+            // 첫 cur은 start이고, 그 다음부턴 첫 전선부터
+            // 이어진 전선을 while문과 deque를 통해 구하게 됨.
             int cur = dq.pollFirst();
-            // 차단된 간선이면 건너 뛰기
+
+            // graph[cur] => 이어진 전선을 모두 향상된 for문을 토앻
+            // 꺼내어 방문하지 않은 전선이면 전선 수를 count++;
             for (int next : graph[cur]) {
+                // 차단된 간선이면 건너 뛰기
                 if ((cur == blockU && next == blockV) ||
                         (cur == blockV && next == blockU)) {
                     continue;
