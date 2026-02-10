@@ -24,7 +24,8 @@ public class MinimumRectangle {
         // 어떤 명함을 넣어도 가로 세로 길이를 만족하여 명함을 넣을 수 있음
         // 가로 * 세로 return
         return maxW * maxH;
-/* List<>로 작성시
+
+        /* List<>로 작성시
         List<Integer> w = new ArrayList<>();
         List<Integer> h = new ArrayList<>();
 
@@ -35,7 +36,8 @@ public class MinimumRectangle {
         int a = Collections.max(w);
         int b = Collections.max(h);
 
-        return a*b;*/
+        return a*b;
+        */
     }
     public static void main(String[] args) {
         MinimumRectangle sol = new MinimumRectangle();
