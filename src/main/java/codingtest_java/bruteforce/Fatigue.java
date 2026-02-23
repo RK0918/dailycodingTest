@@ -12,6 +12,11 @@ public class Fatigue {
     void dfs(int k, int[][] dungeons, int count) {
         // 순열로 던전을 방문하여 제일 많이 탐험한 경우의 수(answer)를 초기화
         answer = Math.max(answer, count);
+
+        // for문 -> 어떤 던전을 먼저 ?
+        // dfs -> for문을 통해 먼저 방문한 던전을 시작으로 재귀로 모든 던전 탐색
+        // for문이 끝났다는 것은 dfs를 통한 재귀를 마치고 그 중에서
+        // 가장 많이 탐색한 던전의 count를 구했다는 것을 의미
         for (int i=0; i < dungeons.length; i++) {
             // 방문하지 않은 던전 and k(피로도)가 최소 피로도와 같거나 높을 경우
             if (!visited[i] && k >= dungeons[i][0]) {
