@@ -47,7 +47,10 @@ public class PowergridDivision {
     private int bfsCount(int n, int start, int blockU, int blockV) {
         boolean[] visited = new boolean[n+1];
         Deque<Integer> dq = new ArrayDeque<>();
-        // 방문한 전선 방문처리
+
+        // solutino()함수에서 for문을 통해 반복처리하며
+        // bfs를 실행하고 있으므로 bfs()함수에서 반복문(while문) 전에
+        // 방문한 전선을 방문처리
         visited[start] = true;
         dq.offerLast(start);
         int count =1; // 방문한 전선 수를 이미 센 걸로 판정
@@ -60,7 +63,11 @@ public class PowergridDivision {
             // graph[cur] => 이어진 전선을 모두 향상된 for문을 토앻
             // 꺼내어 방문하지 않은 전선이면 전선 수를 count++;
             for (int next : graph[cur]) {
-                // 차단된 간선이면 건너 뛰기
+                // 여기서 cur=커팅한 전선 -> next=다음에 자를 전선, 따라서 커팅한 전선 => 커팅한 다른 부분의 전선으로 넘어갈 수 없음
+                // 커팅한 전선(blockU - blockV 사이, "-" 를 자름.)
+                // (1. blockU => blockV)  || (2. blockU <= blockV)
+                // 위 두 가지 경우처럼 차단된 건선이면 건너 뛰는 것을 의미
+
                 if ((cur == blockU && next == blockV) ||
                         (cur == blockV && next == blockU)) {
                     continue;
