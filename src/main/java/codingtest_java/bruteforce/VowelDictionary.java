@@ -2,6 +2,8 @@ package codingtest_java.bruteforce;
 
 public class VowelDictionary {
     public int solution(String word) {
+
+        // 자릿수의 따른
         int[] w= {781, 156, 31, 6, 1};
         String alp= "AEIOU";
 

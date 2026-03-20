@@ -10,7 +10,7 @@ public class Fatigue {
     }
 
     void dfs(int k, int[][] dungeons, int count) {
-        // 순열로 던전을 방문하여 제일 많이 탐험한 경우의 수(answer)를 초기화
+        // 순열로 던전을 방문하여 제일 많이  탐험한 경우의 수(answer)를 초기화
         answer = Math.max(answer, count);
 
         // for문 -> 어떤 던전을 먼저 ?
