@@ -15,7 +15,6 @@ public class MinimumRectangle {
             // 명함 크기를 맞추기 쉽게 바꿈
             int big = Math.max(size[0], size[1]);
             int small = Math.min(size[0], size[1]);
-
             // 큰 수를 모아놓은 길이에서 제일 큰 수를 고름
             maxW = Math.max(maxW, big);
             // 작은 수를 모아놓은 길이에서 제일 큰 수를 고름.

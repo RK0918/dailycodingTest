@@ -6,7 +6,85 @@ import java.util.Deque;
 import java.util.List;
 
 public class PowergridDivision {
-    private List<Integer>[] graph; // 클래스 전역(필드) 선언
+
+    private List<Integer>[] graph;
+
+    public int solution(int n, int[][] wires) {
+
+        // 그래프 생성
+        graph = new ArrayList[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        // 양방향 연결
+        for (int[] w : wires) {
+
+            int a = w[0];
+            int b = w[1];
+
+            graph[a].add(b);
+            graph[b].add(a);
+        }
+
+        int answer = Integer.MAX_VALUE;
+
+        // 전선 하나씩 끊어보기
+        for (int[] w : wires) {
+
+            int blockU = w[0];
+            int blockV = w[1];
+
+            boolean[] visited = new boolean[n + 1];
+
+            // 한쪽 네트워크 개수 구하기
+            int count = dfs(blockU,
+                    visited,
+                    blockU,
+                    blockV);
+
+            // 두 전력망 차이 계산
+            int diff = Math.abs(count - (n - count));
+
+            answer = Math.min(answer, diff);
+        }
+
+        return answer;
+    }
+
+    private int dfs(int cur,
+                    boolean[] visited,
+                    int blockU,
+                    int blockV) {
+
+        visited[cur] = true;
+
+        int count = 1;
+
+        for (int next : graph[cur]) {
+
+            // 끊은 전선은 탐색하지 않음
+            if ((cur == blockU && next == blockV)
+                    || (cur == blockV && next == blockU)) {
+                continue;
+            }
+
+            if (!visited[next]) {
+
+                count += dfs(next,
+                        visited,
+                        blockU,
+                        blockV);
+            }
+        }
+
+        return count;
+    }
+
+
+
+/*    private List<Integer>[] graph; // 클래스 전역(필드) 선언
 
     public int solution(int n, int[][] wires) {
         graph = new ArrayList[n+1]; // 메서드 안에서 실제 그래프 초기화/생성
@@ -83,7 +161,7 @@ public class PowergridDivision {
         }
 
         return count;
-    }
+    }*/
     public static void main(String[] args) {
         PowergridDivision sol = new PowergridDivision();
 
