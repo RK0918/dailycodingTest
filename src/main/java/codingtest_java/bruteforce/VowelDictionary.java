@@ -3,7 +3,8 @@ package codingtest_java.bruteforce;
 public class VowelDictionary {
     public int solution(String word) {
 
-        // 자릿수의 따른
+        // 자릿수의 따라서
+        // 5^0 =1 / 5^1 +1 = 6 / 5^2+6 = 31 / 5^3+31 = 156 / 5^5 +156 = 725 + 156 = 781
         int[] w= {781, 156, 31, 6, 1};
         String alp= "AEIOU";
 
@@ -12,7 +13,8 @@ public class VowelDictionary {
         for (int i=0; i < word.length(); i++){
             // word.charAt(i) == word의 단어(char) 반환
             // A=0, E=1, I=2, O=3, U=4
-            // String.indexOf : 해당 문자열의 인덱슥밧 반환
+
+            // String.indexOf : 해당 문자열의 인덱스값 반환
             int idx = alp.indexOf(word.charAt(i));
             // A = 1, AA =2 이미 접두어로 붙어있는 상태
             // 자신을 포함하니깐 +1을 해줘야 함. 따라서 자릿수마다 +1
