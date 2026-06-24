@@ -3,6 +3,34 @@ package codingtest_java.greedy;
 
 class LargeNumber {
     public String solution(String number, int k) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : number.toCharArray()) {
+            while (sb.length() > 0 && k >0 && sb.charAt(sb.length()-1)  < c) {
+                sb.deleteCharAt(sb.length()-1);
+                k--;
+
+
+            }
+            sb.append(c);
+        }
+
+        if ( k >0) {
+            sb.delete(sb.length()-k, sb.length());
+
+        }
+
+        return sb.toString();
+
+    }
+}
+
+/* 아래 코드는 시간복잡도 문제가 발생함 deleteCharAt(i-1) 위치가 어디냐
+    -> StringBuilder 내부는 char 배열이라서, 중간을 지우면 뒤 요소를 전부 한 칸씩 앞으로 밀어야 함 → O(n)
+
+class LargeNumber {
+    public String solution(String number, int k) {
         StringBuilder builder = new StringBuilder(number);
         int length = builder.length() - k;
 
@@ -20,6 +48,8 @@ class LargeNumber {
         System.out.println(sol.solution("1974", 2));
     }
 }
+*/
+
 /*
 public class LargeNumber {
     public String solution(String number, int k) {

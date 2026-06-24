@@ -6,7 +6,13 @@ class Joystick {
         int len = name.length();
 
         // 1. 상하 조작
-        for (int i=0; len > i; i++) {
+
+        /*
+        for (char c : name.toCharArray()) {
+            answer += Math.min(c - 'A', 'Z' - c + 1);
+        }
+         */
+        for (int i=0;  i < len; i++) {
             char target = name.charAt(i);
             int upCount = target - 'A';
             int downCount = 'Z'-target+1;
